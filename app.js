@@ -55,13 +55,29 @@ app.get("/board", function (req, res) {
 // done
 
 app.post("/board/todolist", function (req, res) {
-  console.log(req.body);
   const title = req.body.title;
   todo_Board.todoList.push({ id: shortid.generate(), title, board: [] });
   res.send("새 todoList가 추가되었습니다.");
 });
 // 새 투두 리스트 만들기 필요데이터:title
 // done
+
+app.put("/board/todolist", function (req, res) {
+  const listId = req.body.listId;
+  const title = req.body.title;
+
+  const listIndex = todo_Board.todoList.findIndex((list) => list.id === listId);
+  todo_Board.todoList[listIndex].title = title;
+  res.send("todoList가 수정되었습니다.");
+});
+
+app.delete("/board/todolist", function (req, res) {
+  const listId = req.body.listId;
+
+  const listIndex = todo_Board.todoList.findIndex((list) => list.id === listId);
+  todo_Board.todoList.splice(listIndex, 1);
+  res.send("todoList가 삭제되었습니다.");
+});
 
 app.post("/board/todoitem", function (req, res) {
   const listId = req.body.listId;
