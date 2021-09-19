@@ -1,6 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 8000;
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -56,7 +59,6 @@ let todo_Board = {
 };
 
 app.get("/login", function (req, res) {
-  console.log(user, todo_Board);
   res.send(user);
 });
 // 유저 정보 받아오기
