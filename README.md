@@ -1,6 +1,7 @@
 # 간이서버
 
 - 백엔드 개발자분들이 실제 API를 개발해주시기 전까지 사용할 임시 API입니다.
+- 모든 데이터는 faker.js로 데모데이터를 생성하였습니다.
 
 # 사용방법
 
@@ -18,7 +19,11 @@ node app.js
 
 # API명세
 
-- url은 임시로 사용하였습니다. endpoint변수에 임의로 넣어두고 실제 api가 개발되면 endpoint를 수정하면 될 것 같습니다.
+- url은 임시로 사용하였습니다.
+- endpoint변수에 임의로 넣어두고 실제 api가 개발되면 endpoint를 수정하면 될 것 같습니다.
+
+- /login
+  - get : 유저 정보를 받아옵니다.
 - /board
   - get : board 정보를 받아옵니다.
 - /board/todolist
