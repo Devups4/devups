@@ -22,28 +22,28 @@ node app.js
 - url은 임시로 사용하였습니다.
 - endpoint변수에 임의로 넣어두고 실제 api가 개발되면 endpoint를 수정하면 될 것 같습니다.
 
-- /login
-  - get : 유저 정보를 받아옵니다.
-- /board
-  - get : board 정보를 받아옵니다.
-- /board/todolist
-  - post: todoList를 추가합니다.
-    - 필요 데이터: todoList의 title
-  - put: todoList의 제목을 수정합니다.
-    - 필요 데이터: todoList의 Id, todoList의 title
-  - patch: todoList의 순서를 바꿉니다.
-    - 필요데이터: todoList1의 id, todoList2의 id,
-  - delete: todoList를 삭제합니다.
-    - 필요데이터: todoList의 Id,
-- /board/todoItem
-  - post: todoItem을 추가합니다.
-    - 필요 데이터: todoList의 Id, 추가할 item의 title
-  - delete: todoItem을 삭제합니다.
-    - 필요 데이터 :todoList의 id, 삭제할 item의 id
-  - put : todoList의 content를 수정합니다.
-    - 필요데이터: todoList의 id, todoItem의 id, 수정 할 todoItem의 content
-  - patch : todoList내부의 두 아이템의 순서를 바꿉니다.
-    - 필요데이터: todoList의 id, todoItem1의 id, todoItem2의 id,
+  - /login
+    - get : 유저 정보를 받아옵니다.
+  - /board
+    - get : board 정보를 받아옵니다.
+  - /board/todolist
+    - post: todoList를 추가합니다.
+      - 필요 데이터: todoList의 title
+    - put: todoList의 제목을 수정합니다.
+      - 필요 데이터: todoList의 Id, todoList의 title
+    - patch: todoList의 순서를 바꿉니다.
+      - 필요데이터: todoList1의 id, todoList2의 id,
+    - delete: todoList를 삭제합니다.
+      - 필요데이터: todoList의 Id,
+  - /board/todoItem
+    - post: todoItem을 추가합니다.
+      - 필요 데이터: todoList의 Id, 추가할 item의 title
+    - delete: todoItem을 삭제합니다.
+      - 필요 데이터 :todoList의 id, 삭제할 item의 id
+    - put : todoList의 content를 수정합니다.
+      - 필요데이터: todoList의 id, todoItem의 id, 수정 할 todoItem의 content
+    - patch : todoList내부의 두 아이템의 순서를 바꿉니다.
+      - 필요데이터: todoList의 id, todoItem1의 id, todoItem2의 id,
 
 # 기타
 
