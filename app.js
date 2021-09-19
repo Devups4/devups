@@ -11,6 +11,20 @@ const shortid = require("shortid");
 let user = {
   email: faker.internet.email(),
   name: faker.name.findName(),
+  follow: [
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+  ],
+  folloing: [
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+    { email: faker.internet.email(), name: faker.name.findName() },
+  ],
 };
 
 let todo_Board = {
@@ -95,6 +109,7 @@ app.patch("/board/todolist", function (req, res) {
   res.send("순서 변경이 완료되었습니다.");
 });
 // 투두리스트의 순서 변경 필요 데이터: 리스트1의 id, 리스트2의 id
+// done
 
 app.delete("/board/todolist", function (req, res) {
   const listId = req.body.listId;
