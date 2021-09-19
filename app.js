@@ -70,6 +70,31 @@ app.put("/board/todolist", function (req, res) {
   todo_Board.todoList[listIndex].title = title;
   res.send("todoList가 수정되었습니다.");
 });
+// 투두리스트 제목 수정 필요데이터: 리스트의 Id 리스트의title
+// done
+
+app.patch("/board/todolist", function (req, res) {
+  const toId = req.body.toId;
+  const fromId = req.body.fromId;
+
+  const toListIndex = todo_Board.todoList.findIndex((list) => list.id === toId);
+
+  const fromListIndex = todo_Board.todoList.findIndex(
+    (list) => list.id === fromId
+  );
+
+  const fromList = JSON.parse(
+    JSON.stringify(todo_Board.todoList[fromListIndex])
+  );
+
+  const tmpList = JSON.parse(JSON.stringify(todo_Board.todoList[toListIndex]));
+
+  todo_Board.todoList.splice(toListIndex, 1, fromList);
+  todo_Board.todoList[fromListIndex] = tmpList;
+
+  res.send("순서 변경이 완료되었습니다.");
+});
+// 투두리스트의 순서 변경 필요 데이터: 리스트1의 id, 리스트2의 id
 
 app.delete("/board/todolist", function (req, res) {
   const listId = req.body.listId;
@@ -78,6 +103,8 @@ app.delete("/board/todolist", function (req, res) {
   todo_Board.todoList.splice(listIndex, 1);
   res.send("todoList가 삭제되었습니다.");
 });
+// 투두리스트 삭제 필요데이터: 리스트의 Id
+// done
 
 app.post("/board/todoitem", function (req, res) {
   const listId = req.body.listId;
