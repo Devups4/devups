@@ -1,11 +1,13 @@
 import React from 'react';
 import Module from '@/Component/Module';
+import GlobalStyle from '@/Component/GlobalStyle';
 
 function App() {
   return (
-    <div>
+    <>
+      <GlobalStyle />
       <Module></Module>
-    </div>
+    </>
   );
 }
 
