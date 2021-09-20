@@ -13,9 +13,18 @@ const Menubar = ({ children }) => {
     <>
       <MenuBarWrapper>
         <HomePage width="30px" height="30px"></HomePage>
-        <ClipBoard width="30px" height="30px"></ClipBoard>
-        <Article width="30px" height="30px"></Article>
-        <Search width="30px" height="30px"></Search>
+        <span>
+          <span>My Board</span>
+          <ClipBoard width="30px" height="30px"></ClipBoard>
+        </span>
+        <span>
+          <span>My Feed</span>
+          <Article width="30px" height="30px"></Article>
+        </span>
+        <span>
+          <input />
+          <Search width="30px" height="30px"></Search>
+        </span>
         <Notify width="30px" height="30px"></Notify>
         <img src={gravatar.url('asdf', { s: '30px', d: 'retro' })} alt="user" />
         <Navigation width="30px" height="30px"></Navigation>
