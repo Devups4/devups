@@ -114,7 +114,7 @@ app.delete("/user/follow", function (req, res) {
 
 app.delete("/user/following", function (req, res) {
   const userId = req.body.userId;
-  const followingUserId = req.body.followUserId;
+  const followingUserId = req.body.followingUserId;
 
   const followingUserIdx = user.following.findIndex(
     (user) => user.id === followingUserId
