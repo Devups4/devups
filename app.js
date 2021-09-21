@@ -107,6 +107,7 @@ app.delete("/user/follow", function (req, res) {
     (user) => user.id === followUserId
   );
   user.follow.splice(followUserIdx, 1);
+  res.send("팔로우 삭제가 완료되었습니다.");
 });
 //팔로우 삭제
 // 필요 데이터: 사용자의 id , 삭제할 유저의 id
@@ -115,10 +116,12 @@ app.delete("/user/following", function (req, res) {
   const userId = req.body.userId;
   const followingUserId = req.body.followUserId;
 
-  const followingUserIdx = user.follow.findIndex(
+  const followingUserIdx = user.following.findIndex(
     (user) => user.id === followUserId
   );
   user.following.splice(followingUserIdx, 1);
+
+  res.send("팔로잉 삭제가 완료되었습니다.");
 });
 //팔로d잉 삭제
 // 필요 데이터: 사용자의 id , 삭제할 유저의 id
