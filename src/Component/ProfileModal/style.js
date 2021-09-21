@@ -12,7 +12,7 @@ export const ProfileModalWrapper = styled.div`
   align-items: center;
 `;
 
-export const ButtonWrapper = styled.div`
+export const CloseButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -28,7 +28,7 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-export const UserInfoWrapper = styled.div`
+export const UserInfoWrapper = styled.h1`
   & > span {
     font-weight: bold;
   }

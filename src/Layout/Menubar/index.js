@@ -19,19 +19,36 @@ import {
 } from '@/Layout/Menubar/style';
 import gravatar from 'gravatar';
 import { userInfoFetcher } from '@/Util/fetcher';
-import Modal from '@/Component/Modal';
 import ProfileModal from '@/Component/ProfileModal';
 import NotifyModal from '@/Component/NotifyModal';
+import FollowModal from '@/Component/FollowModal';
 
 const Menubar = ({ children }) => {
   const { data: user, error } = useSWR('/login', userInfoFetcher);
   const [openMyStatusModal, setOpenMyStatusModal] = useState(false);
+  const [typeOfFollow, setTypeOfFollow] = useState(null);
+  const [openFollowModal, setOpenFollowModal] = useState(false);
   const [openNotifyModal, setOpenNotifyModal] = useState(false);
   console.log(user);
 
   const onOpenMyStatusModal = useCallback(() => {
     setOpenMyStatusModal(true);
   }, []);
+
+  const onOpenFollowModal = useCallback(() => {
+    setOpenFollowModal(true);
+    setTypeOfFollow('팔로우');
+  }, []);
+
+  const onOpenFollowingModal = useCallback(() => {
+    setOpenFollowModal(true);
+    setTypeOfFollow('팔로잉');
+  }, []);
+
+  const onCloseFollowModal = useCallback(() => {
+    setOpenFollowModal(false);
+  }, []);
+
   const onOpenNotifyModal = useCallback(() => {
     setOpenNotifyModal(true);
   }, []);
@@ -82,8 +99,15 @@ const Menubar = ({ children }) => {
         </MenuBarContentWrapper>
       </MenuBarWrapper>
       <div>{children}</div>
-      <ProfileModal openFlag={openMyStatusModal} onCloseModal={onCloseModal} user={user} />
+      <ProfileModal
+        openFlag={openMyStatusModal}
+        onCloseModal={onCloseModal}
+        user={user}
+        onOpenFollowModal={onOpenFollowModal}
+        onOpenFollowingModal={onOpenFollowingModal}
+      />
       <NotifyModal openFlag={openNotifyModal} onCloseModal={onCloseModal} />
+      <FollowModal openFlag={openFollowModal} onCloseModal={onCloseFollowModal} typeOfFollow={typeOfFollow} />
     </>
   );
 };

@@ -7,4 +7,5 @@ export const ModalBackground = styled.div`
   top: 0;
   left: 0;
   display: fixed;
+  background-color: ${(props) => (props ? props.backgroundColor : 'none')};
 `;
