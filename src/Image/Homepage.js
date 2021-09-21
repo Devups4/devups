@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const HomePage = ({ width, height }) => {
+export const HomePage = React.memo(({ width, height }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -9,4 +9,4 @@ export const HomePage = ({ width, height }) => {
       />
     </svg>
   );
-};
+});

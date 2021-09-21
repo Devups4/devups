@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Navigation = ({ width, height }) => {
+export const Navigation = React.memo(({ width, height }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 67 66" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -12,4 +12,4 @@ export const Navigation = ({ width, height }) => {
       />
     </svg>
   );
-};
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Notify = ({ width, height }) => {
+export const Notify = React.memo(({ width, height }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 44 55" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -11,4 +11,4 @@ export const Notify = ({ width, height }) => {
       />
     </svg>
   );
-};
+});

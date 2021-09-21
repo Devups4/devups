@@ -1,5 +1,5 @@
 import React from 'react';
-export const Article = ({ width, height }) => {
+export const Article = React.memo(({ width, height }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -32,4 +32,4 @@ export const Article = ({ width, height }) => {
       />
     </svg>
   );
-};
+});

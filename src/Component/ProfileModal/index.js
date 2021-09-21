@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Modal from '../Modal';
 import { ProfileModalWrapper, CloseButtonWrapper, UserInfoWrapper } from './style';
 
@@ -13,7 +13,6 @@ const ProfileModal = ({ openFlag, onCloseModal, onOpenFollowModal, onOpenFollowi
                 <div>&#43;</div>
               </button>
             </CloseButtonWrapper>
-            <br />
             <UserInfoWrapper>
               <span>{user?.name}</span>님 안녕하세요.{' '}
             </UserInfoWrapper>

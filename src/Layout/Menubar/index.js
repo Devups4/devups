@@ -29,7 +29,6 @@ const Menubar = ({ children }) => {
   const [typeOfFollow, setTypeOfFollow] = useState(null);
   const [openFollowModal, setOpenFollowModal] = useState(false);
   const [openNotifyModal, setOpenNotifyModal] = useState(false);
-  console.log(user);
 
   const onOpenMyStatusModal = useCallback(() => {
     setOpenMyStatusModal(true);
@@ -107,7 +106,13 @@ const Menubar = ({ children }) => {
         onOpenFollowingModal={onOpenFollowingModal}
       />
       <NotifyModal openFlag={openNotifyModal} onCloseModal={onCloseModal} />
-      <FollowModal openFlag={openFollowModal} onCloseModal={onCloseFollowModal} typeOfFollow={typeOfFollow} />
+      <FollowModal
+        openFlag={openFollowModal}
+        onCloseModal={onCloseFollowModal}
+        typeOfFollow={typeOfFollow}
+        follow={user?.follow}
+        following={user?.following}
+      />
     </>
   );
 };

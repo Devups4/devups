@@ -14,7 +14,31 @@ export const FollowModalTitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid grey;
-  & > h1 {
+  width: 100%;
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+  & > div > h1 {
     font-weight: bold;
+    font2size: 2rem;
+  }
+`;
+
+export const CloseButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  & > button {
+    border: none;
+    background: none;
+    border-radius: 3px;
+  }
+  & > button > div {
+    cursor: pointer;
+    transform: rotate(45deg);
+
+    font-size: 2rem;
   }
 `;
