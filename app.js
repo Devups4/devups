@@ -21,7 +21,7 @@ let user = {
     { email: faker.internet.email(), name: faker.name.findName() },
     { email: faker.internet.email(), name: faker.name.findName() },
   ],
-  folloing: [
+  following: [
     { email: faker.internet.email(), name: faker.name.findName() },
     { email: faker.internet.email(), name: faker.name.findName() },
     { email: faker.internet.email(), name: faker.name.findName() },
