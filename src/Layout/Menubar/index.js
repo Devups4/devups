@@ -18,11 +18,13 @@ import {
   MenuBarWrapper,
 } from '@/Layout/Menubar/style';
 import gravatar from 'gravatar';
-import { loginFetcher } from '@/Util/fetcher';
+import { userInfoFetcher } from '@/Util/fetcher';
 import Modal from '@/Component/Modal';
+import ProfileModal from '@/Component/ProfileModal';
+import NotifyModal from '@/Component/NotifyModal';
 
 const Menubar = ({ children }) => {
-  const { data: user, error } = useSWR('/login', loginFetcher);
+  const { data: user, error } = useSWR('/login', userInfoFetcher);
   const [openMyStatusModal, setOpenMyStatusModal] = useState(false);
   const [openNotifyModal, setOpenNotifyModal] = useState(false);
   console.log(user);
@@ -80,48 +82,8 @@ const Menubar = ({ children }) => {
         </MenuBarContentWrapper>
       </MenuBarWrapper>
       <div>{children}</div>
-      {openMyStatusModal && (
-        <Modal onCloseModal={onCloseModal}>
-          <div
-            style={{
-              borderRadius: '10px',
-              boxShadow: '0px 0px 11px 4px #D6D6D6',
-              padding: '30px',
-              position: 'absolute',
-              top: '80px',
-              right: '8%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-            <h1>{user?.name}님 안녕하세요.</h1>
-            <div>
-              <span>팔로잉 : {user?.following?.length}&nbsp;</span>
-              <span>팔로우 : {user?.follow?.length}</span>
-            </div>
-            <div>마이 페이지로 이동</div>
-            <div>로그아웃</div>
-          </div>
-        </Modal>
-      )}
-      {openNotifyModal && (
-        <Modal onCloseModal={onCloseModal}>
-          <div
-            style={{
-              borderRadius: '10px',
-              boxShadow: '0px 0px 11px 4px #D6D6D6',
-              padding: '30px',
-              position: 'absolute',
-              top: '80px',
-              right: '12%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-            안녕안녕
-          </div>
-        </Modal>
-      )}
+      <ProfileModal openFlag={openMyStatusModal} onCloseModal={onCloseModal} user={user} />
+      <NotifyModal openFlag={openNotifyModal} onCloseModal={onCloseModal} />
     </>
   );
 };
