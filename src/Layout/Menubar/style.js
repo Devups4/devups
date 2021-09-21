@@ -41,7 +41,7 @@ export const SearchWrapper = styled.div`
 
 export const RightMenuWrapper = styled.div`
   display: flex;
-  margin-right: 10%;
+  padding-right: 10%;
 `;
 
 export const ProfileWrapper = styled.div`

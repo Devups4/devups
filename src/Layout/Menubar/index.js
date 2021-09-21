@@ -1,4 +1,5 @@
 import React from 'react';
+import useSWR from 'swr';
 import { Navigation } from '@/Image/Navigation';
 import { HomePage } from '@/Image/Homepage';
 import { ClipBoard } from '@/Image/ClipBoard';
@@ -13,8 +14,11 @@ import {
   RightMenuWrapper,
 } from '@/Layout/Menubar/style';
 import gravatar from 'gravatar';
+import { loginFetcher } from '@/Util/fetcher';
 
 const Menubar = ({ children }) => {
+  const { data: user, error } = useSWR('/login', loginFetcher);
+
   return (
     <>
       <MenuBarWrapper>
@@ -36,7 +40,7 @@ const Menubar = ({ children }) => {
         <RightMenuWrapper>
           <Notify width="30px" height="30px"></Notify>
           <ProfileWrapper>
-            <img src={gravatar.url('asdf', { s: '30px', d: 'retro' })} alt="user" />
+            <img src={gravatar.url(user?.email, { s: '30px', d: 'retro' })} alt="user" />
           </ProfileWrapper>
           <Navigation width="30px" height="30px"></Navigation>
         </RightMenuWrapper>
