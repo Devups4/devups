@@ -117,7 +117,7 @@ app.delete("/user/following", function (req, res) {
   const followingUserId = req.body.followUserId;
 
   const followingUserIdx = user.following.findIndex(
-    (user) => user.id === followUserId
+    (user) => user.id === followingUserId
   );
   user.following.splice(followingUserIdx, 1);
 
