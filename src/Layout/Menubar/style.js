@@ -8,7 +8,7 @@ export const MenuBarContentWrapper = styled.div`
   position: fixed;
   width: 100%;
   padding: 10px;
-  border-bottom: 2px solid grey;
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +17,9 @@ export const MenuBarContentWrapper = styled.div`
 
 export const LeftMenuWrapper = styled.div`
   display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  flex-basis: 0;
   & > div {
     background: #6200ee;
     margin-left: 10px;
@@ -35,7 +38,8 @@ export const LeftMenuWrapper = styled.div`
 
 export const SearchWrapper = styled.div`
   display: flex;
-  background: #c4c4c4;
+  flex-grow: 2;
+  justify-content: center;
   border-radius: 5px;
   & > input {
     background: #c4c4c4;
@@ -43,11 +47,15 @@ export const SearchWrapper = styled.div`
     padding: 3px;
     font-size: 24px;
   }
+  & > a {
+    background: #c4c4c4;
+  }
 `;
 
 export const RightMenuWrapper = styled.div`
   display: flex;
-  padding-right: 10%;
+  flex-grow: 1;
+  flex-basis: 0;
   & > div {
     cursor: pointer;
   }

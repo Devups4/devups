@@ -85,6 +85,7 @@ const Menubar = ({ children }) => {
             </Link>
           </SearchWrapper>
           <RightMenuWrapper>
+            <div>&nbsp;</div>
             <NotifyWrapper onClick={onOpenNotifyModal}>
               <Notify width="30px" height="30px"></Notify>
             </NotifyWrapper>
