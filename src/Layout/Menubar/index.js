@@ -25,6 +25,7 @@ const Menubar = ({ children }) => {
   const { data: user, error } = useSWR('/login', loginFetcher);
   const [openMyStatusModal, setOpenMyStatusModal] = useState(false);
   const [openNotifyModal, setOpenNotifyModal] = useState(false);
+  console.log(user);
 
   const onOpenMyStatusModal = useCallback(() => {
     setOpenMyStatusModal(true);
@@ -83,32 +84,42 @@ const Menubar = ({ children }) => {
         <Modal onCloseModal={onCloseModal}>
           <div
             style={{
-              background: 'red',
-              width: '500px',
+              borderRadius: '10px',
+              boxShadow: '0px 0px 11px 4px #D6D6D6',
+              padding: '30px',
               position: 'absolute',
-              margin: 'auto',
-              height: '300px',
-              top: '0',
-              left: '0',
-              bottom: '0',
-              right: '0',
-            }}></div>
+              top: '80px',
+              right: '8%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+            <h1>{user?.name}님 안녕하세요.</h1>
+            <div>
+              <span>팔로잉 : {user?.following?.length}&nbsp;</span>
+              <span>팔로우 : {user?.follow?.length}</span>
+            </div>
+            <div>마이 페이지로 이동</div>
+            <div>로그아웃</div>
+          </div>
         </Modal>
       )}
       {openNotifyModal && (
         <Modal onCloseModal={onCloseModal}>
           <div
             style={{
-              background: 'red',
-              width: '500px',
+              borderRadius: '10px',
+              boxShadow: '0px 0px 11px 4px #D6D6D6',
+              padding: '30px',
               position: 'absolute',
-              margin: 'auto',
-              height: '300px',
-              top: '0',
-              left: '0',
-              bottom: '0',
-              right: '0',
-            }}></div>
+              top: '80px',
+              right: '12%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+            안녕안녕
+          </div>
         </Modal>
       )}
     </>
