@@ -43,6 +43,9 @@ export const SearchWrapper = styled.div`
 export const RightMenuWrapper = styled.div`
   display: flex;
   padding-right: 10%;
+  & > div {
+    cursor: pointer;
+  }
 `;
 
 export const ProfileWrapper = styled.div`
@@ -51,3 +54,7 @@ export const ProfileWrapper = styled.div`
   border-radius: 50%;
   overflow: hidden;
 `;
+
+export const NavigationWrapper = styled.div``;
+
+export const NotifyWrapper = styled.div``;
