@@ -106,6 +106,7 @@ app.delete("/user/follow", function (req, res) {
   const followUserIdx = user.follow.findIndex(
     (user) => user.id === followUserId
   );
+  if (followUserIdx === -1) res.send("잘못된 요청입니다.");
   user.follow.splice(followUserIdx, 1);
   res.send("팔로우 삭제가 완료되었습니다.");
 });
@@ -119,6 +120,7 @@ app.delete("/user/following", function (req, res) {
   const followingUserIdx = user.following.findIndex(
     (user) => user.id === followingUserId
   );
+  if (followingUserIdx === -1) res.send("잘못된 요청입니다.");
   user.following.splice(followingUserIdx, 1);
 
   res.send("팔로잉 삭제가 완료되었습니다.");
@@ -151,6 +153,7 @@ app.put("/board/todolist", function (req, res) {
   const title = req.body.title;
 
   const listIndex = todo_Board.todoList.findIndex((list) => list.id === listId);
+  if (listIndex === -1) res.send("잘못된 요청입니다.");
   todo_Board.todoList[listIndex].title = title;
   res.send("todoList가 수정되었습니다.");
 });
@@ -166,7 +169,8 @@ app.patch("/board/todolist", function (req, res) {
   const fromListIndex = todo_Board.todoList.findIndex(
     (list) => list.id === fromId
   );
-
+  if (toListIndex === -1 || fromListIndex === -1)
+    res.send("잘못된 요청입니다.");
   const fromList = JSON.parse(
     JSON.stringify(todo_Board.todoList[fromListIndex])
   );
@@ -185,6 +189,7 @@ app.delete("/board/todolist", function (req, res) {
   const listId = req.body.listId;
 
   const listIndex = todo_Board.todoList.findIndex((list) => list.id === listId);
+  if (listIndex === -1) res.send("잘못된 요청입니다.");
   todo_Board.todoList.splice(listIndex, 1);
   res.send("todoList가 삭제되었습니다.");
 });
@@ -211,6 +216,7 @@ app.delete("/board/todoitem", function (req, res) {
     (item) => item.id === itemId
   );
 
+  if (listIndex === -1 || itemIndex === -1) res.send("잘못된 요청입니다.");
   todo_Board.todoList[listIndex].board.splice(itemIndex, 1);
   res.send("삭제가 완료되었습니다.");
 });
@@ -226,7 +232,7 @@ app.put("/board/todoitem", function (req, res) {
   const itemIndex = todo_Board.todoList[listIndex].board.findIndex(
     (item) => item.id === itemId
   );
-
+  if (listIndex === -1 || itemIndex === -1) res.send("잘못된 요청입니다.");
   todo_Board.todoList[listIndex].board[itemIndex].content = content;
   res.send("수정이 완료되었습니다.");
 });
@@ -246,6 +252,9 @@ app.patch("/board/todoitem", function (req, res) {
   const fromItemIndex = todo_Board.todoList[listIndex].board.findIndex(
     (item) => item.id === fromId
   );
+
+  if (listIndex === -1 || toItemIndex === -1 || fromItemIndex)
+    res.send("잘못된 요청입니다.");
   const fromItem = todo_Board.todoList[listIndex].board[fromItemIndex];
 
   const tmpItem = todo_Board.todoList[listIndex].board[toItemIndex];
