@@ -15,18 +15,58 @@ let user = {
   email: faker.internet.email(),
   name: faker.name.findName(),
   follow: [
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
   ],
   following: [
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
-    { email: faker.internet.email(), name: faker.name.findName() },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
   ],
 };
 
