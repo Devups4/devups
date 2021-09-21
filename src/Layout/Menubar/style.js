@@ -20,8 +20,9 @@ export const LeftMenuWrapper = styled.div`
     align-items: center;
     border-radius: 5px;
     padding: 3px;
-    & > span {
+    & > a > span {
       color: white;
+      text-decoration: none;
       margin-right: 10px;
     }
   }

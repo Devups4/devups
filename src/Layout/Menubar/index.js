@@ -1,5 +1,6 @@
 import React from 'react';
 import useSWR from 'swr';
+import { Link } from 'react-router-dom';
 import { Navigation } from '@/Image/Navigation';
 import { HomePage } from '@/Image/Homepage';
 import { ClipBoard } from '@/Image/ClipBoard';
@@ -23,19 +24,27 @@ const Menubar = ({ children }) => {
     <>
       <MenuBarWrapper>
         <LeftMenuWrapper>
-          <HomePage width="30px" height="30px"></HomePage>
+          <Link to="/">
+            <HomePage width="30px" height="30px"></HomePage>
+          </Link>
           <div>
-            <span>My Board</span>
+            <Link to="/board">
+              <span>My Board</span>
+            </Link>
             <ClipBoard width="30px" height="30px"></ClipBoard>
           </div>
           <div>
-            <span>My Feed</span>
+            <Link to="/feed">
+              <span>My Feed</span>
+            </Link>
             <Article width="30px" height="30px"></Article>
           </div>
         </LeftMenuWrapper>
         <SearchWrapper>
           <input />
-          <Search width="30px" height="30px"></Search>
+          <Link to="/search">
+            <Search width="30px" height="30px"></Search>
+          </Link>
         </SearchWrapper>
         <RightMenuWrapper>
           <Notify width="30px" height="30px"></Notify>
