@@ -3,9 +3,10 @@ import Menubar from '@/Layout/Menubar';
 class Module extends Component {
   render() {
     return (
-      <Menubar>
+      <>
+        <Menubar />
         <div> 모듈 테스트 입니다. </div>
-      </Menubar>
+      </>
     );
   }
 }

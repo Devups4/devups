@@ -8,13 +8,14 @@ import { Article } from '@/Image/Article';
 import { Notify } from '@/Image/Notify';
 import { Search } from '@/Image/Search';
 import {
-  MenuBarWrapper,
+  MenuBarContentWrapper,
   ProfileWrapper,
   LeftMenuWrapper,
   SearchWrapper,
   RightMenuWrapper,
   NavigationWrapper,
   NotifyWrapper,
+  MenuBarWrapper,
 } from '@/Layout/Menubar/style';
 import gravatar from 'gravatar';
 import { loginFetcher } from '@/Util/fetcher';
@@ -40,40 +41,42 @@ const Menubar = ({ children }) => {
   return (
     <>
       <MenuBarWrapper>
-        <LeftMenuWrapper>
-          <Link to="/">
-            <HomePage width="30px" height="30px"></HomePage>
-          </Link>
-          <div>
-            <Link to="/board">
-              <span>My Board</span>
+        <MenuBarContentWrapper>
+          <LeftMenuWrapper>
+            <Link to="/">
+              <HomePage width="30px" height="30px"></HomePage>
             </Link>
-            <ClipBoard width="30px" height="30px"></ClipBoard>
-          </div>
-          <div>
-            <Link to="/feed">
-              <span>My Feed</span>
+            <div>
+              <Link to="/board">
+                <span>My Board</span>
+              </Link>
+              <ClipBoard width="30px" height="30px"></ClipBoard>
+            </div>
+            <div>
+              <Link to="/feed">
+                <span>My Feed</span>
+              </Link>
+              <Article width="30px" height="30px"></Article>
+            </div>
+          </LeftMenuWrapper>
+          <SearchWrapper>
+            <input />
+            <Link to="/search">
+              <Search width="30px" height="30px"></Search>
             </Link>
-            <Article width="30px" height="30px"></Article>
-          </div>
-        </LeftMenuWrapper>
-        <SearchWrapper>
-          <input />
-          <Link to="/search">
-            <Search width="30px" height="30px"></Search>
-          </Link>
-        </SearchWrapper>
-        <RightMenuWrapper>
-          <NotifyWrapper onClick={onOpenNotifyModal}>
-            <Notify width="30px" height="30px"></Notify>
-          </NotifyWrapper>
-          <ProfileWrapper onClick={onOpenMyStatusModal}>
-            <img src={gravatar.url(user?.email, { s: '30px', d: 'retro' })} alt="user" />
-          </ProfileWrapper>
-          <NavigationWrapper onClick={onOpenMyStatusModal}>
-            <Navigation width="30px" height="30px"></Navigation>
-          </NavigationWrapper>
-        </RightMenuWrapper>
+          </SearchWrapper>
+          <RightMenuWrapper>
+            <NotifyWrapper onClick={onOpenNotifyModal}>
+              <Notify width="30px" height="30px"></Notify>
+            </NotifyWrapper>
+            <ProfileWrapper onClick={onOpenMyStatusModal}>
+              <img src={gravatar.url(user?.email, { s: '30px', d: 'retro' })} alt="user" />
+            </ProfileWrapper>
+            <NavigationWrapper onClick={onOpenMyStatusModal}>
+              <Navigation width="30px" height="30px"></Navigation>
+            </NavigationWrapper>
+          </RightMenuWrapper>
+        </MenuBarContentWrapper>
       </MenuBarWrapper>
       <div>{children}</div>
       {openMyStatusModal && (

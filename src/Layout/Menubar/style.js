@@ -1,13 +1,18 @@
 import styled from '@emotion/styled';
 
 export const MenuBarWrapper = styled.div`
+  padding-bottom: 80px;
+`;
+export const MenuBarContentWrapper = styled.div`
   background: white;
+  position: fixed;
   width: 100%;
   padding: 10px;
   border-bottom: 2px solid grey;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 80px;
 `;
 
 export const LeftMenuWrapper = styled.div`
