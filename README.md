@@ -22,6 +22,12 @@ node app.js
 - url은 임시로 사용하였습니다.
 - endpoint변수에 임의로 넣어두고 실제 api가 개발되면 endpoint를 수정하면 될 것 같습니다.
 
+  - /user/follow
+    - delete: 해당 유저의 팔로우를 취소합니다.
+  - /user/following
+
+    - delete: 해당 유저의 팔로잉을 취소합니다.
+
   - /login
     - get : 유저 정보를 받아옵니다.
   - /board
