@@ -14,7 +14,7 @@ const ProfileModal = ({ openFlag, onCloseModal, onOpenFollowModal, onOpenFollowi
               </button>
             </CloseButtonWrapper>
             <UserInfoWrapper>
-              <span>{user?.name}</span>님 안녕하세요.{' '}
+              <span>{user?.name}</span>님 안녕하세요.
             </UserInfoWrapper>
             <br />
             <div>

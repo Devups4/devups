@@ -2,12 +2,8 @@ import React from 'react';
 import { UserItemWrapper, UserInfoWrapper } from './style';
 import gravatar from 'gravatar';
 import { ProfileWrapper } from '@/Layout/Menubar/style';
-import axios from 'axios';
 
-const FollowingUserItem = React.memo(({ user }) => {
-  const onClick = () => {
-    axios.delete('/user/following', { data: { followUserId: user.id } });
-  };
+const FollowingUserItem = React.memo(({ user, onClick }) => {
   return (
     <UserItemWrapper>
       <UserInfoWrapper>
