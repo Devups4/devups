@@ -71,6 +71,18 @@ let user = {
   ],
 };
 
+let article = {
+  id: shortid.generate(),
+  user: user.email,
+  title: faker.name.title(),
+  content: faker.lorem.paragraph(),
+  hashtag: [
+    { value: faker.lorem.word(), num: 1 },
+    { value: faker.lorem.word(), num: 1 },
+    { value: faker.lorem.word(), num: 1 },
+  ],
+};
+
 let todo_Board = {
   id: shortid.generate(),
   user: user.email,
@@ -112,6 +124,10 @@ app.delete("/user/follow", function (req, res) {
 });
 //팔로우 삭제
 // 필요 데이터: 사용자의 id , 삭제할 유저의 id
+
+app.get("/article", function (req, res) {
+  res.send(article);
+});
 
 app.delete("/user/following", function (req, res) {
   const userId = req.body.userId;
