@@ -75,7 +75,7 @@ let article = {
   id: shortid.generate(),
   user: user.email,
   title: faker.name.title(),
-  content: faker.lorem.paragraph(),
+  content: faker.lorem.paragraphs(),
   hashtag: [
     { value: faker.lorem.word(), num: 1 },
     { value: faker.lorem.word(), num: 1 },
