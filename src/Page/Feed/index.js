@@ -26,7 +26,7 @@ const Feed = () => {
     setOpenFollowModal(true);
     setTypeOfFollow('팔로잉');
   }, []);
-  console.log(user);
+  console.log(article);
   return (
     <>
       <Menubar></Menubar>
@@ -49,13 +49,24 @@ const Feed = () => {
         <div>
           <ul>
             {article?.hashtag.map((ele) => (
-              <li>
+              <li key={ele.value}>
                 {ele.value}&nbsp;{ele.num}
               </li>
             ))}
           </ul>
         </div>
-        <div>article</div>
+        <div>
+          <ul>
+            <h1>{article?.title}</h1>
+            <h2>{article?.user}</h2>
+            <div>{article?.content.substring(0, 50)}...</div>
+            <ul>
+              {article.hashtag.map((ele) => (
+                <li>{ele.value}</li>
+              ))}
+            </ul>
+          </ul>
+        </div>
       </FeedWrapper>
       <FollowModal
         onCloseModal={onCloseModal}
