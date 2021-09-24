@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>find UserId</title>
+    <script>
+
+    </script>
+</head>
+<body>
+<h1>이메일로 발송된 인증번호를 입력해주세요</h1>
+<hr>
+
+<form th:action="@{/ComparePass}" method="get">
+    <input type="hidden" name="password" th:value="${password}">
+    <input type="hidden" name="id" th:value="${id}">
+    <input type="text" name="inputPassword" placeholder="인증번호를 입력해주세요.">
+    <button type="submit">발송</button>
+</form>
+</body>
+</html>
