@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 import { ProfileModalWrapper, CloseButtonWrapper, UserInfoWrapper } from './style';
 
@@ -22,7 +23,7 @@ const ProfileModal = ({ openFlag, onCloseModal, onOpenFollowModal, onOpenFollowi
               <span onClick={onOpenFollowModal}>팔로우 : {user?.follow?.length}</span>
             </div>
             <br />
-            <div>마이 페이지로 이동</div>
+            <Link to={`/${user?.id}`}>마이 페이지로 이동</Link>
             <br />
             <div>로그아웃</div>
           </ProfileModalWrapper>

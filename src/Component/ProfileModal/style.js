@@ -11,6 +11,10 @@ export const ProfileModalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background: white;
+  & > a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export const CloseButtonWrapper = styled.div`

@@ -24,7 +24,7 @@ import NotifyModal from '@/Component/NotifyModal';
 import FollowModal from '@/Component/FollowModal';
 
 const Menubar = ({ children }) => {
-  const { data: user, error } = useSWR('/login', userInfoFetcher);
+  const { data: user } = useSWR('/login', userInfoFetcher);
   const [openMyStatusModal, setOpenMyStatusModal] = useState(false);
   const [typeOfFollow, setTypeOfFollow] = useState(null);
   const [openFollowModal, setOpenFollowModal] = useState(false);

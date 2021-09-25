@@ -11,7 +11,7 @@ const FollowModal = ({ openFlag, onCloseModal, typeOfFollow, follow, following }
     return () => {
       mutate('/login', async (data) => {
         await axios.delete('/user/follow', { data: { followUserId } });
-        return { ...data, follow: data.follow.filter((user) => user.id !== followUserId) };
+        return { ...data, following: data.follow.filter((user) => user.id !== followUserId) };
       });
     };
   };

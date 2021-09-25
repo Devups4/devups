@@ -6,13 +6,35 @@ import useSWR from 'swr';
 import { ProfileWrapper, UserInfoWrapper, FeedWrapper, UserDetailWrapper, ButtonWrapper } from './style';
 import { useParams } from 'react-router-dom';
 import FollowModal from '@/Component/FollowModal';
+import ArticleCard from '@/Component/ArticleCard';
+import { useHistory } from 'react-router-dom';
 
 const Feed = () => {
+  const history = useHistory();
   const { userId } = useParams();
-  const { data: article } = useSWR('/article', articleFetcher);
+  const { data: articles } = useSWR('/article', articleFetcher);
   const { data: user } = useSWR('/login', userInfoFetcher);
   const [openFollowingModal, setOpenFollowModal] = useState(false);
   const [typeofFollow, setTypeOfFollow] = useState('팔로우');
+
+  const onClickUser = useCallback(
+    (userId) => {
+      return () => {
+        history.push(`/${userId}`);
+      };
+    },
+    [history],
+  );
+
+  const onClickArticle = useCallback(
+    (articleId, userId) => {
+      return () => {
+        history.push(`/${userId}/${articleId}`);
+      };
+    },
+    [history],
+  );
+
   const onCloseModal = useCallback(() => {
     setOpenFollowModal(false);
   }, []);
@@ -26,11 +48,11 @@ const Feed = () => {
     setOpenFollowModal(true);
     setTypeOfFollow('팔로잉');
   }, []);
-  console.log(article);
+
   return (
     <>
       <Menubar></Menubar>
-      <UserInfoWrapper>
+      <UserInfoWrapper onClick={onClickUser(user?.id)}>
         <ProfileWrapper>
           <img src={gravatar.url(user?.email, { s: '200px', d: 'retro' })} alt="user" />
         </ProfileWrapper>
@@ -44,29 +66,25 @@ const Feed = () => {
         </UserDetailWrapper>
         <ButtonWrapper>{userId === user?.id && <button>프로필 편집</button>}</ButtonWrapper>
       </UserInfoWrapper>
+
       <FeedWrapper>
-        <div>&nbsp;</div>
+        <div>Hashtag</div>
         <div>
           <ul>
-            {article?.hashtag.map((ele) => (
-              <li key={ele.value}>
-                {ele.value}&nbsp;{ele.num}
+            {articles?.map((article) => (
+              <li key={article.id}>
+                <ArticleCard
+                  article={article}
+                  onClickUser={onClickUser}
+                  onClickArticle={onClickArticle}
+                  user={user}
+                  content={article.des}
+                />
               </li>
             ))}
           </ul>
         </div>
-        <div>
-          <ul>
-            <h1>{article?.title}</h1>
-            <h2>{article?.user}</h2>
-            <div>{article?.content.substring(0, 50)}...</div>
-            <ul>
-              {article.hashtag.map((ele) => (
-                <li>{ele.value}</li>
-              ))}
-            </ul>
-          </ul>
-        </div>
+        <div>&nbsp;</div>
       </FeedWrapper>
       <FollowModal
         onCloseModal={onCloseModal}
