@@ -16,7 +16,7 @@ const Feed = () => {
   const { data: user } = useSWR('/login', userInfoFetcher);
   const [openFollowingModal, setOpenFollowModal] = useState(false);
   const [typeofFollow, setTypeOfFollow] = useState('팔로우');
-
+  console.log(articles);
   const onClickUser = useCallback(
     (userId) => {
       return () => {

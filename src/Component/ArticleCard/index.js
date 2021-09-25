@@ -8,7 +8,7 @@ const ArticleCard = ({ article, onClickUser, onClickArticle, user, content }) =>
         <h1>{article.title}</h1>
         <article>{content}</article>
         <div>
-          <ul>
+          <ul className="hashtag">
             {article.hashtag.map((tag, idx) => (
               <li key={tag.value + tag.num}>
                 <span>{tag.value}</span>
@@ -16,7 +16,7 @@ const ArticleCard = ({ article, onClickUser, onClickArticle, user, content }) =>
             ))}
           </ul>
           {user.id === article.userId && (
-            <ul>
+            <ul className="button">
               <li>
                 <span>좋아요</span>
               </li>
@@ -35,7 +35,7 @@ const ArticleCard = ({ article, onClickUser, onClickArticle, user, content }) =>
         <ProfileWrapper>
           <img src={gravatar.url(article.user, { s: '100px', d: 'retro' })} alt="user" />
         </ProfileWrapper>
-        <div>
+        <div className="name">
           <div>작성자 : {article.name}</div>
           <address>{article.user}</address>
         </div>

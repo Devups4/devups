@@ -18,19 +18,19 @@ export const ArticleBodyWrapper = styled.div`
     font-size: 20px;
     padding: 80px 0;
   }
-  & > div > ul:nth-of-type(1) > li {
+  & .hashtag > li {
     float: left;
   }
-  & > div > ul:nth-of-type(1) > li > span {
+  & .hashtag > li > span {
     margin-right: 10px;
     padding: 8px;
     border-radius: 10px;
     background: #6200ee;
   }
-  & > div > ul:nth-of-type(2) > li {
+  & .button > li {
     float: left;
   }
-  & > div > ul:nth-of-type(2) > li > span {
+  & .button > li > span {
     margin-right: 10px;
     padding: 8px;
   }
@@ -47,7 +47,7 @@ export const UserInfoWrapper = styled.div`
   display: flex;
   margin: 50px 0;
   cursor: pointer;
-  & > div:nth-of-type(2) {
+  & .name {
     display: flex;
     flex-direction: column;
     justify-content: center;
