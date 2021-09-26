@@ -12,8 +12,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Module} />
-          <Route path="/Login" component={LogIn} />
-          <Route path="/:userId" component={UserPage} />
+          <Route path="/login" component={LogIn} />
+          <Route path="/userpage/:userId" component={UserPage} />
         </Switch>
       </Router>
     </>

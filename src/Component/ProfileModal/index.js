@@ -23,7 +23,7 @@ const ProfileModal = ({ openFlag, onCloseModal, onOpenFollowModal, onOpenFollowi
               <span onClick={onOpenFollowModal}>팔로우 : {user?.follow?.length}</span>
             </div>
             <br />
-            <Link to={`/${user?.id}`}>마이 페이지로 이동</Link>
+            <Link to={`/userpage/${user?.id}`}>마이 페이지로 이동</Link>
             <br />
             <div>로그아웃</div>
           </ProfileModalWrapper>

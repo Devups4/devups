@@ -4,23 +4,22 @@ import gravatar from 'gravatar';
 import { articleFetcher, userInfoFetcher } from '@/Util/fetcher';
 import useSWR from 'swr';
 import { ProfileWrapper, UserInfoWrapper, FeedWrapper, UserDetailWrapper, ButtonWrapper } from './style';
-import { useParams } from 'react-router-dom';
 import FollowModal from '@/Component/FollowModal';
 import ArticleCard from '@/Component/ArticleCard';
-import { useHistory } from 'react-router-dom';
+import { Route, useParams } from 'react-router-dom';
+import ArticleDetail from '@/Component/ArticleDetail';
 
-const Feed = () => {
-  const history = useHistory();
+const Feed = ({ history, match }) => {
   const { userId } = useParams();
   const { data: articles } = useSWR('/article', articleFetcher);
   const { data: user } = useSWR('/login', userInfoFetcher);
   const [openFollowingModal, setOpenFollowModal] = useState(false);
   const [typeofFollow, setTypeOfFollow] = useState('팔로우');
-  console.log(articles);
+
   const onClickUser = useCallback(
     (userId) => {
       return () => {
-        history.push(`/${userId}`);
+        history.push(`/userpage/${userId}`);
       };
     },
     [history],
@@ -29,7 +28,7 @@ const Feed = () => {
   const onClickArticle = useCallback(
     (articleId, userId) => {
       return () => {
-        history.push(`/${userId}/${articleId}`);
+        history.push(`/userpage/${userId}/${articleId}`);
       };
     },
     [history],
@@ -66,26 +65,35 @@ const Feed = () => {
         </UserDetailWrapper>
         <ButtonWrapper>{userId === user?.id && <button>프로필 편집</button>}</ButtonWrapper>
       </UserInfoWrapper>
-
-      <FeedWrapper>
-        <div>Hashtag</div>
-        <div>
-          <ul>
-            {articles?.map((article) => (
-              <li key={article.id}>
-                <ArticleCard
-                  article={article}
-                  onClickUser={onClickUser}
-                  onClickArticle={onClickArticle}
-                  user={user}
-                  content={article.des}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>&nbsp;</div>
-      </FeedWrapper>
+      <Route
+        exact
+        path={match.path}
+        render={() => (
+          <FeedWrapper>
+            <div>Hashtag</div>
+            <div>
+              <ul>
+                {articles?.map((article) => (
+                  <li key={article.id}>
+                    <ArticleCard
+                      article={article}
+                      onClickUser={onClickUser}
+                      onClickArticle={onClickArticle}
+                      user={user}
+                      content={article.des}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>&nbsp;</div>
+          </FeedWrapper>
+        )}
+      />
+      <Route
+        path={`${match.path}/:articleId`}
+        render={() => <ArticleDetail onClickUser={onClickUser} onClickArticle={onClickArticle} user={user} />}
+      />
       <FollowModal
         onCloseModal={onCloseModal}
         openFlag={openFollowingModal}

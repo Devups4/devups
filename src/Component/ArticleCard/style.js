@@ -16,6 +16,7 @@ export const ArticleBodyWrapper = styled.div`
 
   & > article {
     font-size: 20px;
+    max-width: 1000px;
     padding: 80px 0;
   }
   & .hashtag > li {

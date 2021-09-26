@@ -1,7 +1,14 @@
+import ArticleDetail from '@/Component/ArticleDetail';
 import React from 'react';
+import { Route } from 'react-router-dom';
 
-const LogIn = () => {
-  return <div>hi</div>;
+const LogIn = ({ match }) => {
+  return (
+    <>
+      <div>hi</div>
+      <Route exact path={`${match.path}/asdf`} render={() => <div>hi</div>} />
+    </>
+  );
 };
 
 export default LogIn;
