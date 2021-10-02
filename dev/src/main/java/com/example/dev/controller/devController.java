@@ -1,7 +1,7 @@
 package com.example.dev.controller;
 
 import com.example.dev.service.BoardService;
-import com.example.dev.dto.BoardDto;
+import com.example.dev.domain.dto.BoardDto;
 import lombok.AllArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Controller;
@@ -25,11 +25,11 @@ public class devController {
 
     @GetMapping("/")
     public String start(Model model){
-    	model.addAttribute("username", "¾ß¹Ì");
+    	model.addAttribute("username", "hello");
         return "hello.html";
     }
     
-    // spring security Á¦°Å
+    // spring security ï¿½ï¿½ï¿½ï¿½
     protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().headers().frameOptions().disable();
 	}
@@ -44,7 +44,7 @@ public class devController {
         return "board/list.html";
     }
 
-    // ±Û¾²±â
+
     @GetMapping("/board/post")
     public String write() {
     	System.out.println("post");

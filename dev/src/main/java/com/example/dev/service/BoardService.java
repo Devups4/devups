@@ -1,10 +1,9 @@
 package com.example.dev.service;
 
-import com.example.dev.dto.BoardDto;
+import com.example.dev.domain.dto.BoardDto;
 import com.example.dev.domain.entity.BoardEntity;
 import com.example.dev.domain.repository.BoardRepository;
 import lombok.AllArgsConstructor;
-import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
 
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;

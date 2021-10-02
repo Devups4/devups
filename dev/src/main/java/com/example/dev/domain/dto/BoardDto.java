@@ -1,4 +1,4 @@
-package com.example.dev.dto;
+package com.example.dev.domain.dto;
 
 import com.example.dev.domain.entity.BoardEntity;
 import lombok.*;

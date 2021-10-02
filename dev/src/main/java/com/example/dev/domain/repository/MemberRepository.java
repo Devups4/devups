@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -22,6 +23,14 @@ public class MemberRepository {
 
     public userEntity findOneById(Long id){
         return em.find(userEntity.class,id);
+    }
+
+    public Optional<userEntity> findOneByUserId(String userId){
+        userEntity user = (userEntity) em.createQuery("select m from userEntity m where m.userId=:userId")
+                .setParameter("userId",userId)
+                .getSingleResult();
+        Optional<userEntity> optOf = Optional.of(user); // cast to Optional instance by using "of" method!
+        return optOf;
     }
 
     public String findUserIdByEmail(String email){
@@ -47,6 +56,14 @@ public class MemberRepository {
         Long findId = user.getId();
         return findId;
     }
+
+    public Optional<userEntity> findUserByUserId(String userId){
+        userEntity user=(userEntity) em.createQuery("select m from userEntity m where m.userId=:userId")
+                .setParameter("userId",userId)
+                .getSingleResult();  //과연 userId로 영속성 객체를 가져올수 있을까??
+        return Optional.of(user); // return Optional instance by "of" method.
+    }
+
     public void configNewPassword(Long id,String inputPassword){
         userEntity user = em.find(userEntity.class, id);
         user.configNewPassword(inputPassword);

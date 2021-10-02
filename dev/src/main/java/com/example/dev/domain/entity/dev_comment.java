@@ -35,7 +35,7 @@ public class dev_comment extends TimeEntity{
     private dev_comment parent;
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<ps_comment> children = new ArrayList<>();
+    private List<dev_comment> children = new ArrayList<>();
 
     @Builder
     public dev_comment(Long id, String writer, String content, dev_board post, dev_comment parent) {

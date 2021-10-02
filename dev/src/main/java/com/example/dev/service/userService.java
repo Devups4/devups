@@ -1,25 +1,31 @@
 package com.example.dev.service;
 
+import com.example.dev.JwtTokenProvider;
+import com.example.dev.domain.dto.LoginRequest;
 import com.example.dev.domain.dto.userDto;
 import com.example.dev.domain.entity.userEntity;
 import com.example.dev.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class userService {
     private final MemberRepository memberRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    //以묐났寃��궗�뒗 �꽌鍮꾩뒪�뿉�꽌 �씠猷⑥뼱�졇�빞 �븳�떎.
+
     @Transactional
-    public Long joinUser(userDto userDto) { //�쉶�썝媛��엯
+    public Long joinUser(userDto userDto) {
         ValidateDuplicateMember(userDto.toEntity());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
@@ -27,9 +33,8 @@ public class userService {
         return userDto.getId();
     }
     private void ValidateDuplicateMember(userEntity user) {
-        //臾몄젣媛� �엳�떎硫� �삁�쇅瑜� �꽣�쑉由닿굅�떎.
+
         List<userEntity> findMembers1 = memberRepository.ValidateDuplicateUserId(user.getUserId()); //userId
-        //�젙留� �셿�쟾媛숈��닚媛꾩뿉 媛숈��씠由꾩쑝濡� �벑濡앺븷�닔媛��엳�뒗�뜲... DB�쓽 硫ㅽ띁�쓽 �꽕�엫�쓣 �쑀�땲�겕 �젣�빟議곌굔�쑝濡� �옟�븘二쇰뒗嫄� 沅뚯옣�븯�떗�땲�떎.
         if(!findMembers1.isEmpty()){
             throw new IllegalStateException("�씠誘� 議댁옱�븯�뒗 �븘�씠�뵒�엯�땲�떎.");
         }
@@ -50,8 +55,7 @@ public class userService {
             log.info("怨좎쑀 �떇蹂꾩옄 id瑜� 李얠븘�삱�닔 �뾾�뒿�땲�떎.....");   //  <- �삁�쇅泥섎━ 1
             return flag;
         }
-        else{ //�쑀���뿉 �빐�떦�븯�뒗 id�뒗 �엳�쓣�븣 => �씠�젣�뒗 怨좎쑀 �떇蹂꾩옄 踰덊샇濡�(pk) 李얠븘蹂댁옄.
-              // �븳踰� �뜑 DB�뿰�궛�쓣 �븯�뒗 �뒓�굦�� �엳吏�留� �씪�떒 吏꾪뻾.
+        else{
             userEntity findUser = memberRepository.findOneById(id); //�쁺�냽�꽦 而⑦뀓�뒪�듃瑜� 諛쏆븘�삩�떎.
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             if(passwordEncoder.matches(password,findUser.getPassword())){
@@ -59,9 +63,30 @@ public class userService {
                 return flag;
             }
             else{
-                return flag;      //  <- �삁�쇅泥섎━ 2
+                return flag;
             }
         }
+    }
+    @Transactional
+    public Optional<userEntity> findUserByUserId(String userId){
+        return memberRepository.findOneByUserId(userId);
+    }
+
+    @Transactional
+    public String createToken(LoginRequest loginRequest) {
+        userEntity user = memberRepository.findUserByUserId(loginRequest.getUserId())
+                .orElseThrow(IllegalArgumentException::new); // by using Optional -> I can use "orElseThrow" method!
+                /* orElseThrow를 사용하면 에러 처리에 대한 간편성이 생깁니다!
+                *  값이 없는경우 기본값을 반환하는 대신 예외를 던져야 하는 경우도 있습니다. 이때 orElseThrow() 사용.*/
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if(passwordEncoder.matches(loginRequest.getPassword(),user.getPassword())){
+            return jwtTokenProvider.createToken(user.getUserId());
+        }
+        else{
+            return "Not Match Password";
+            //오류 처리 방법?
+        }
+
     }
 
 }
