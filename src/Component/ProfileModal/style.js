@@ -7,6 +7,7 @@ export const ProfileModalWrapper = styled.div`
   position: absolute;
   top: 80px;
   right: 8%;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;

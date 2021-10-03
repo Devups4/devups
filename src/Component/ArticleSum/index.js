@@ -5,17 +5,17 @@ const ArticleCard = ({ article, onClickUser, onClickArticle, user, content }) =>
   return (
     <ArticleCardWrapper>
       <ArticleBodyWrapper onClick={onClickArticle(article?.id, user?.id)}>
-        <h1>{article.title}</h1>
+        <h1>{article?.title}</h1>
         <article>{content}</article>
         <div>
           <ul className="hashtag">
-            {article.hashtag.map((tag, idx) => (
-              <li key={tag.value + tag.num}>
+            {article?.hashtag.map((tag, idx) => (
+              <li key={tag.id}>
                 <span>{tag.value}</span>
               </li>
             ))}
           </ul>
-          {user.id === article.userId && (
+          {user.id === article?.userId && (
             <ul className="button">
               <li>
                 <span>좋아요</span>
@@ -33,11 +33,11 @@ const ArticleCard = ({ article, onClickUser, onClickArticle, user, content }) =>
 
       <UserInfoWrapper onClick={onClickUser(user.id)}>
         <ProfileWrapper>
-          <img src={gravatar.url(article.user, { s: '100px', d: 'retro' })} alt="user" />
+          <img src={gravatar.url(article?.user, { s: '100px', d: 'retro' })} alt="user" />
         </ProfileWrapper>
         <div className="name">
-          <div>작성자 : {article.name}</div>
-          <address>{article.user}</address>
+          <div>작성자 : {article?.name}</div>
+          <address>{article?.user}</address>
         </div>
       </UserInfoWrapper>
     </ArticleCardWrapper>

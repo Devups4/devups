@@ -1,25 +1,26 @@
-import { FeedWrapper } from '@/Page/UserPage/style';
 import { articleFetcher } from '@/Util/fetcher';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
-import ArticleCard from '../ArticleCard';
 
-const ArticleDetail = ({ onClickUser, onClickArticle, user }) => {
+const ArticleDetail = ({ onClickUser }) => {
   const { userId, articleId } = useParams();
-  const { data: articles } = useSWR('/article', articleFetcher);
+  const { data: article } = useSWR(`/article/${userId}/${articleId}`, articleFetcher);
+  console.log(article);
+  console.log(onClickUser);
   return (
-    <FeedWrapper>
-      <div>&nbsp;</div>
-      <ArticleCard
-        user={user}
-        onClickUser={onClickUser}
-        onClickArticle={onClickArticle}
-        article={articles?.find((ele) => ele.id === articleId)}
-        content={articles?.find((ele) => ele.id === articleId)?.content}
-      />
-      <div>&nbsp;</div>
-    </FeedWrapper>
+    <div>
+      <h1>{article?.title}</h1>
+      <div>
+        <div onClick={onClickUser(userId)}>{article?.name}</div>
+        <div>{article?.timeStamp}</div>
+      </div>
+      <article>{article?.content}</article>
+      <div>
+        <div>like:{article?.numOfLike}</div>
+        <div>comment:{article?.numOfComment}</div>
+      </div>
+    </div>
   );
 };
 

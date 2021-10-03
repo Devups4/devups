@@ -8,6 +8,7 @@ export const NotifyModalWrapper = styled.div`
   position: absolute;
   top: 80px;
   right: 12%;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
