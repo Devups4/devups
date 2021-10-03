@@ -10,12 +10,38 @@ app.use(express.urlencoded({ extended: false }));
 
 const faker = require("faker");
 const shortid = require("shortid");
+const { datatype } = require("faker");
 
 let user = {
   id: shortid.generate(),
   email: faker.internet.email(),
   name: faker.name.findName(),
   follow: [
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
     {
       id: shortid.generate(),
       email: faker.internet.email(),
@@ -68,20 +94,60 @@ let user = {
       email: faker.internet.email(),
       name: faker.name.findName(),
     },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
+    {
+      id: shortid.generate(),
+      email: faker.internet.email(),
+      name: faker.name.findName(),
+    },
   ],
 };
 
-let article = {
-  id: shortid.generate(),
-  user: user.email,
-  title: faker.name.title(),
-  content: faker.lorem.paragraphs(),
-  hashtag: [
-    { value: faker.lorem.word(), num: 1 },
-    { value: faker.lorem.word(), num: 1 },
-    { value: faker.lorem.word(), num: 1 },
-  ],
+const demoarticle = (user) => {
+  return {
+    id: shortid.generate(),
+    timeStamp: faker.datatype.datetime(),
+    name: user.name,
+    user: user.email,
+    userId: user.id,
+    title: faker.name.title(),
+    content: faker.lorem.paragraphs(),
+    des: faker.lorem.sentence(),
+    hashtag: [
+      { value: faker.lorem.word(), num: 1, id: shortid.generate() },
+      { value: faker.lorem.word(), num: 1, id: shortid.generate() },
+      { value: faker.lorem.word(), num: 1, id: shortid.generate() },
+    ],
+    numOfComment: datatype.number(),
+    numOfLike: faker.datatype.number(),
+    isLike: faker.datatype.boolean(),
+  };
 };
+
+let article = [];
+
+for (let i = 0; i < 10; i++) {
+  article.push(demoarticle(user));
+}
 
 let todo_Board = {
   id: shortid.generate(),
@@ -127,6 +193,13 @@ app.delete("/user/follow", function (req, res) {
 
 app.get("/article", function (req, res) {
   res.send(article);
+});
+app.get("/article/:userId/:articleId", function (req, res) {
+  const userId = req.params.userId;
+  const articleId = req.params.articleId;
+  const target = article.find((ele) => ele.id === articleId);
+  console.log(target);
+  res.send(target);
 });
 
 app.delete("/user/following", function (req, res) {
