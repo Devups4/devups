@@ -1,4 +1,3 @@
-import ArticleDetail from '@/Component/ArticleDetail';
 import React from 'react';
 import { Route } from 'react-router-dom';
 
