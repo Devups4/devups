@@ -7,6 +7,7 @@ export const FollowModalWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
+  position: fixed;
   border-radius: 10px;
 `;
 
