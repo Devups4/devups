@@ -1,17 +1,17 @@
 import Menubar from '@/Layout/Menubar';
 import React, { useCallback, useState } from 'react';
 import gravatar from 'gravatar';
-import { articleFetcher, userInfoFetcher } from '@/Util/fetcher';
+import { articlesFetcher, userInfoFetcher } from '@/Util/fetcher';
 import useSWR from 'swr';
 import { ProfileWrapper, UserInfoWrapper, FeedWrapper, UserDetailWrapper, ButtonWrapper } from './style';
 import FollowModal from '@/Component/FollowModal';
-import ArticleCard from '@/Component/ArticleCard';
+import ArticleCard from '@/Component/ArticleSum';
 import { Route, useParams } from 'react-router-dom';
 import ArticleDetail from '@/Component/ArticleDetail';
 
 const Feed = ({ history, match }) => {
   const { userId } = useParams();
-  const { data: articles } = useSWR('/article', articleFetcher);
+  const { data: articles } = useSWR('/article', articlesFetcher);
   const { data: user } = useSWR('/login', userInfoFetcher);
   const [openFollowingModal, setOpenFollowModal] = useState(false);
   const [typeofFollow, setTypeOfFollow] = useState('팔로우');
@@ -51,8 +51,8 @@ const Feed = ({ history, match }) => {
   return (
     <>
       <Menubar></Menubar>
-      <UserInfoWrapper onClick={onClickUser(user?.id)}>
-        <ProfileWrapper>
+      <UserInfoWrapper>
+        <ProfileWrapper onClick={onClickUser(user?.id)}>
           <img src={gravatar.url(user?.email, { s: '200px', d: 'retro' })} alt="user" />
         </ProfileWrapper>
         <UserDetailWrapper>
@@ -90,10 +90,7 @@ const Feed = ({ history, match }) => {
           </FeedWrapper>
         )}
       />
-      <Route
-        path={`${match.path}/:articleId`}
-        render={() => <ArticleDetail onClickUser={onClickUser} onClickArticle={onClickArticle} user={user} />}
-      />
+      <Route path={`${match.path}/:articleId`} render={() => <ArticleDetail onClickUser={onClickUser} />} />
       <FollowModal
         onCloseModal={onCloseModal}
         openFlag={openFollowingModal}
