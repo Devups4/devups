@@ -2,8 +2,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-     <meta name="_csrf" th:content="${_csrf.token}">
-	 <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <title>Title</title>
 </head>
 <body>
@@ -11,7 +9,6 @@
         제목 : <input type="text" name="title"> <br>
         작성자 : <input type="text" name="writer"> <br>
         <textarea name="content"></textarea><br>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <input type="submit" value="등록">
     </form>
 </body>

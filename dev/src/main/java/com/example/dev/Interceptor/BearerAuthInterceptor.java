@@ -3,6 +3,7 @@ package com.example.dev.Interceptor;
 import com.example.dev.AuthorizationExtractor;
 import com.example.dev.JwtTokenProvider;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -23,14 +24,14 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) {
-        System.out.println(">>> interceptor.preHandle 호출");
+        System.out.println(">>> interceptor.preHandle occur");
         String token = authExtractor.extract(request, "Bearer");
-        if (StringUtils.isEmpty(token)) {
-            return true;
+        if (ObjectUtils.isEmpty(token)) {
+            throw new IllegalArgumentException("There is no Token..........");
         }
 
         if (!jwtTokenProvider.validateToken(token)) {
-            throw new IllegalArgumentException("유효하지 않은 토큰");
+            throw new IllegalArgumentException("not valid token!!!!!!!!!!!!!!!!");
         }
 
         String name = jwtTokenProvider.getSubject(token); //userId를 획득합니다.

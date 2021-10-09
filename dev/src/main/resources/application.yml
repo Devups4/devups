@@ -31,7 +31,7 @@ security:
   jwt:
     token:
       secret-key: secretsecretsecretsecretsecret
-      expire-length: 3600000
+      expire-length: 3600000 #1시간
 
 logging:
   level:
