@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>find UserId</title>
+</head>
+<body>
+<h1>Find UserId</h1>
+<hr>
+
+<form th:action="@{/findUserPw}" method="post">
+    <h2>아이디를 입력해주세요. 회원가입때 등록햇던 이메일에 근거해 이메일로 진행메세지를 보내드리겠습니다.</h2>
+    <input type="text" name="userId" placeholder="아이디를 입력해주세요.">
+    <button type="submit">발송</button>
+</form>
+</body>
+</html>
